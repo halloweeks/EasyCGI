@@ -1,7 +1,7 @@
 # EasyCGI
 <p>Easy to make your website</p>
 
-<b>Required to cgi.put do not use std::cout or printf</b>
+<b>Use cgi.put for print content don't use std::cout or printf</b>
 ```
 cgi.put << "Hello";
 ```
@@ -18,9 +18,9 @@ int main() {
 }
 ```
 
-<h3>Form handling</h3>
+<h3>CGI Form handling</h3>
 
-<p>index.html</p>
+<p>Make <b>index.html</b></p>
 
 ```
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ int main() {
 </html>
 ```
 
-<p>main.cpp compile into main.cgi</p>
+<p>Make <b>main.cpp</b> and compile into <b>main.cgi</b></p>
 
 ```
 #include <iostream>
