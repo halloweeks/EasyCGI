@@ -2,11 +2,14 @@
 <p>Easy to make your website</p>
 
 <b>Use cgi.put for print content don't use std::cout or printf</b>
+
 ```
 cgi.put << "Hello";
 ```
 
 <b>Write your first CGI program</b>
+<p>You don't need to write content type 
+default automatically add content-type: text/html</p>
 
 ```
 #include <iostream>
