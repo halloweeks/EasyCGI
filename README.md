@@ -121,3 +121,15 @@ cgi.SessionRegenerate();
 ```
 cgi.SessionId();
 ```
+
+<p>Get value from session</p>
+
+```
+cgi.put << cgi.value("session", "name");
+```
+
+<p>Check isset session<br/>Returning Boolean</p>
+
+```
+cgi.isset("session", "name");
+```
