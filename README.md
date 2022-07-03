@@ -35,7 +35,7 @@ int main() {
 </head>
 <body>
  <h4>My CGI Form</h4>
-  <form action="main.cgi" method="POST">
+  <form action="cgi-bin/main.cgi" method="POST">
    <input type="text" name="user" placeholder="Enter username" />
    <input type="text" name="pass" placeholder="Enter password" />
    <input type="submit" name="login" value="Login"/>
