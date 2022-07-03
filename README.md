@@ -1,5 +1,5 @@
 # EasyCGI
-<p>Easy to make your website</p>
+<p>C++ CGI library</p>
 
 <b>Use cgi.put for print content don't use std::cout or printf</b>
 
@@ -52,8 +52,8 @@ int main() {
 
 int main() {
  if (cgi.isset("POST", "login")) {
-  if (cgi.value("POST", "user") == "root") {
-   if (cgi.value("POST", "pass") == "1234") {
+  if (cgi.value("POST", "user").String() == "root") {
+   if (cgi.value("POST", "pass").String() == "1234") {
      cgi.put << "<p style=\"color: green;\">Login successful</p>";
    } else {
      cgi.put << "<p style=\"color: red;\">Password incorrect</p>";
@@ -78,8 +78,8 @@ int main() {
  cgi.SetCookie("name","hello");
  cgi.SetCookie("id", 288339238);
 
- cgi.put << "name: " << cgi.value("cookie", "name") << "<br/>";
- cgi.put << "id: " << cgi.value("cookie", "id");
+ cgi.put << "name: " << cgi.value("cookie", "name").String(); << "<br/>";
+ cgi.put << "id: " << cgi.value("cookie", "id").LongLong();
  return 0;
 }
 ```
