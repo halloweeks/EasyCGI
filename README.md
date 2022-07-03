@@ -1,0 +1,2 @@
+# EasyCGI
+C++ CGI library
