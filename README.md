@@ -67,3 +67,57 @@ int main() {
  return 0;
 }
 ```
+
+<h3>CGI Cookies handling</h3>
+
+```
+#include <iostream>
+#include "cgi.hpp"
+
+int main() {
+ cgi.SetCookie("name","hello");
+ cgi.SetCookie("id", 288339238);
+
+ cgi.put << "name: " << cgi.value("cookie", "name") << "<br/>";
+ cgi.put << "id: " << cgi.value("cookie", "id");
+ return 0;
+}
+```
+
+<h3>CGI Session Handling</h3>
+<p>No limit in session max data and session file size</p><br/>
+<p>First you call session start<br/>to creating session file in the tmp directory</p>
+
+```
+cgi.SessionStart();
+```
+
+<p>Set your session values</p>
+
+```
+cgi.SessionSet("name", "hello");
+```
+
+<p>Saving session file</p>
+
+```
+cgi.SessionSave();
+```
+
+<p>Deleting session</p>
+
+```
+cgi.SessionDelete();
+```
+
+<p>Regenerate current to new session</p>
+
+```
+cgi.SessionRegenerate();
+```
+
+<p>Get current session id</p>
+
+```
+cgi.SessionId();
+```
