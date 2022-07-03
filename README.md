@@ -61,6 +61,8 @@ int main() {
   } else {
     cgi.put << "<p style=\"color: red;\">Username incorrect</p>";
   }
+ } else {
+   cgi.header("location: index.html");
  }
  return 0;
 }
