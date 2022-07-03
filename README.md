@@ -6,7 +6,7 @@
 cgi.put << "Hello";
 ```
 
-<b>Write your first</b>
+<b>Write your first CGI program</b>
 
 ```
 #include <iostream>
@@ -36,7 +36,7 @@ int main() {
    <input type="text" name="user" placeholder="Enter username" />
    <input type="text" name="pass" placeholder="Enter password" />
    <input type="submit" name="login" value="Login"/>
-  </form>";
+  </form>
 </body>
 </html>
 ```
