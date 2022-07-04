@@ -7,7 +7,7 @@
 cgi.put << "Hello";
 ```
 
-<b>Write your first CGI program</b>
+<b>Write your first Hello World!</b>
 <p>You don't need to write content type 
 default automatically add content-type: text/html</p>
 
@@ -82,4 +82,41 @@ int main() {
  cgi.put << "id: " << cgi.value("cookie", "id").LongLong();
  return 0;
 }
+```
+
+<h3>EasyCGI Details</h3>
+
+<p>Get Request method</p>
+
+```
+cgi.method();
+```
+
+```
+if (cgi.method() == "POST") {
+   cgi.put << "Your request is POST";
+} else if (cgi.method() == "GET") {
+   cgi.put << "Your request is GET";
+} else {
+   cgi.put << "Unknown request method";
+}
+```
+
+<p>Read value from GET or POST or COOKIE</p>
+
+```
+cgi.put << cgi.value("get","keyname").String();
+cgi.put << cgi.value("post","keyname").String();
+cgi.put << cgi.value("cookie","keyname").String();
+```
+
+<p>cgi.value conversion types</p>
+
+```
+String(); // string
+Int(); // integer value
+LongLong(); // big integer
+Float(); // float
+Double(); // double
+Bool(); // Boolean
 ```
