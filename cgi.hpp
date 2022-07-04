@@ -139,6 +139,7 @@ namespace cpp_cgi {
 				}
 			}
 		}
+		// session.CGI_SESSION_ID = value("cookie", "CGI_SESSION_ID").String();
 	}
 	
 	libhttp::~libhttp() {
@@ -294,6 +295,13 @@ namespace cpp_cgi {
 			numbers = std::stod(ReturnData);
 		} catch (...) {}
 		return numbers;
+	}
+	
+	bool libhttp::Bool() {
+		if (ReturnData == "true" || ReturnData == "1") {
+			return true;
+		}
+		return false;
 	}
 	
 }
