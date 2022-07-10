@@ -115,7 +115,7 @@ cgi.put << cgi.value("cookie","keyname").String();
 ```
 String(); // string
 Int(); // integer value
-LongLong(); // big integer
+BigInt(); // big integer
 Float(); // float
 Double(); // double
 Bool(); // Boolean
