@@ -1,11 +1,9 @@
-#ifndef HTTP_LIB_MAIN
-#define HTTP_LIB_MAIN
+#ifndef _EASY_CGI_
+#define _EASY_CGI_
 
 #include <vector>
 #include <string.h>
-#include "utilities/urldecode.hpp"
 #include <sstream>
-#include "utilities/randstr.hpp"
 
 namespace cpp_cgi {
 	class libhttp {
@@ -37,6 +35,7 @@ namespace cpp_cgi {
 		std::string method();
 		bool isset(std::string, std::string);
 		libhttp& value(std::string, std::string);
+		std::string urldecode(const std::string&);
 		void header(std::string);
 		std::string upper(std::string);
 		std::string lower(std::string);
@@ -47,7 +46,7 @@ namespace cpp_cgi {
 		void SetCookie(std::string, double);
 		std::string String();
 		int Int();
-		long long LongLong();
+		long long BigInt();
 		bool Bool();
 		float Float();
 		double Double();
@@ -55,8 +54,8 @@ namespace cpp_cgi {
 	
 	
 	libhttp::libhttp() {
-		if (REQUEST_METHOD != NULL) {
-			if (strcmp(REQUEST_METHOD, "POST") == 0) {
+		if (REQUEST_METHOD != NULL && CONTENT_TYPE != NULL) {
+			if (strcmp(REQUEST_METHOD, "POST") == 0 && strcmp(CONTENT_TYPE, "application/x-www-form-urlencoded") == 0) {
 				while (std::cin >> tmp) {
 					POST_QUERY_STRING += tmp;
 				}
@@ -139,7 +138,6 @@ namespace cpp_cgi {
 				}
 			}
 		}
-		// session.CGI_SESSION_ID = value("cookie", "CGI_SESSION_ID").String();
 	}
 	
 	libhttp::~libhttp() {
@@ -152,7 +150,7 @@ namespace cpp_cgi {
 		}
 		
 		if (!content_type) {
-			std::cout << "content-type: text/html\r\n";
+			std::cout << "Content-Type: text/html\r\n";
 		}
 		
 		std::cout << "\r\n" << put.str();
@@ -216,6 +214,25 @@ namespace cpp_cgi {
 		return *this;
 	}
 	
+	std::string libhttp::urldecode(const std::string& value) {
+		std::string result;
+		result.reserve(value.size());
+		for (std::size_t i = 0; i < value.size(); ++i) {
+			auto ch = value[i];
+			if (ch == '%' && (i + 2) < value.size()) {
+				auto hex = value.substr(i + 1, 2);
+				auto dec = static_cast<char>(std::strtol(hex.c_str(), nullptr, 16));
+				result.push_back(dec);
+				i += 2;
+			} else if (ch == '+') {
+				result.push_back(' ');
+			} else {
+				result.push_back(ch);
+			}
+		}
+		return result;
+	}
+	
 	// headers
 	void libhttp::header(std::string data) {
 		headers.push_back(data + "\r\n");
@@ -273,7 +290,7 @@ namespace cpp_cgi {
 		return numbers;
 	}
 	
-	long long libhttp::LongLong() {
+	long long libhttp::BigInt() {
 		long long numbers = 0;
 		try {
 			numbers = std::stoll(ReturnData);
