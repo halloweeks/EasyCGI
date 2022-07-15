@@ -9,7 +9,7 @@ cgi.put << "Hello";
 
 <b>Write your first Hello World!</b>
 <p>You don't need to write content type 
-default automatically add content-type: text/html</p>
+default automatically added content-type: text/html</p>
 
 ```
 #include <iostream>
@@ -79,7 +79,7 @@ int main() {
  cgi.SetCookie("id", 288339238);
 
  cgi.put << "name: " << cgi.value("cookie", "name").String(); << "<br/>";
- cgi.put << "id: " << cgi.value("cookie", "id").LongLong();
+ cgi.put << "id: " << cgi.value("cookie", "id").BigInt();
  return 0;
 }
 ```
