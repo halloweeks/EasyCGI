@@ -120,3 +120,9 @@ Float(); // float
 Double(); // double
 Bool(); // Boolean
 ```
+
+<p>Set Headers</p>
+
+```
+cgi.header("Header name");
+```
